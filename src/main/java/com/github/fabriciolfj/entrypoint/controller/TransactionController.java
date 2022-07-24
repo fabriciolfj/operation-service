@@ -7,6 +7,7 @@ import com.github.fabriciolfj.entrypoint.dto.TransactionResponse;
 import io.smallrye.mutiny.Uni;
 import lombok.RequiredArgsConstructor;
 
+import javax.validation.Valid;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.WebApplicationException;
@@ -20,7 +21,7 @@ public class TransactionController {
 
     @POST
     @Path("/debit")
-    public Uni<Response> createDebit(final TransactionRequest request) {
+    public Uni<Response> createDebit(@Valid final TransactionRequest request) {
         return transactionCreateCase.execute(TransactionRequestConveter.toEntityDebit(request))
                 .onItem()
                 .ifNull().failWith(new WebApplicationException("Fail save transaction", Response.Status.BAD_REQUEST))
