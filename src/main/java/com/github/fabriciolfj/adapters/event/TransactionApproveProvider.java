@@ -1,6 +1,7 @@
 package com.github.fabriciolfj.adapters.event;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fabriciolfj.business.SendUpdateTransaction;
 import com.github.fabriciolfj.entities.TransactionEntity;
 import com.github.fabriciolfj.util.ConvertObjectoToJson;
 import io.smallrye.mutiny.Uni;
@@ -12,7 +13,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 @ApplicationScoped
-public class TransactionApproveProvider {
+public class TransactionApproveProvider implements SendUpdateTransaction {
 
     @Channel("transaction-approve")
     @OnOverflow(value = OnOverflow.Strategy.BUFFER)
@@ -21,6 +22,7 @@ public class TransactionApproveProvider {
     @Inject
     private ObjectMapper mapper;
 
+    @Override
     public Uni<Void> send(final TransactionEntity entity) {
         var dto = new TransactionApproveDTO(entity.transaction());
         var json = new ConvertObjectoToJson<TransactionApproveDTO>().toJson(dto);
