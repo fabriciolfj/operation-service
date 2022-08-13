@@ -4,6 +4,8 @@ import com.github.fabriciolfj.adapters.repository.data.TransactionData;
 import com.github.fabriciolfj.entities.TransactionEntity;
 import com.github.fabriciolfj.entities.TypeTransaction;
 
+import java.time.LocalDateTime;
+
 public class TransactionDataConverter {
 
     private TransactionDataConverter() {
@@ -24,6 +26,7 @@ public class TransactionDataConverter {
                 .transaction(entity.transaction())
                 .account(entity.account())
                 .customer(entity.customer())
+                .dateTime(LocalDateTime.now())
                 .type(entity.type().getDescribe())
                 .value(entity.value())
                 .build();

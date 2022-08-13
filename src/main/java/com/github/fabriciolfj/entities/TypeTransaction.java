@@ -16,7 +16,7 @@ public enum TypeTransaction {
 
     public static TypeTransaction toEnum(final String describe) {
         return Stream.of(TypeTransaction.values())
-                .filter(value -> value.equals(describe))
+                .filter(value -> value.getDescribe().equals(describe))
                 .findFirst()
                 .orElseThrow(() -> new TypeTransactionNotFoundException());
     }

@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transactions")
@@ -28,5 +29,7 @@ public class TransactionData extends PanacheEntity {
     private String customer;
     @Column(name = "value", nullable = false)
     private BigDecimal value;
+    @Column(name = "dateTime")
+    private LocalDateTime dateTime;
     private String type;
 }

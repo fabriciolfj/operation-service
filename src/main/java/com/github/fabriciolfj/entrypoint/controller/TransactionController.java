@@ -14,6 +14,8 @@ import javax.ws.rs.core.Response;
 
 @Path("/api/v1/transactions")
 @RequiredArgsConstructor
+@Consumes("application/json")
+@Produces("application/json")
 public class TransactionController {
 
     private final TransactionCreateCase transactionCreateCase;
@@ -30,7 +32,7 @@ public class TransactionController {
     }
 
     @PUT
-    @Path("/{id}")
+    @Path("/autorize/{id}")
     public Uni<Response> updateTransaction(@PathParam("id") final String id) {
         return transactionUpdateCase.execute(id)
                 .onItem().transform(t -> Response.accepted().build())

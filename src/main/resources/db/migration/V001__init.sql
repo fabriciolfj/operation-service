@@ -5,6 +5,7 @@ create table transactions(
   customer varchar(255) not null,
   value numeric(15,4) not null,
   type varchar(15) not null,
+  dateTime timestamp not null,
   primary key (id)
 );
 

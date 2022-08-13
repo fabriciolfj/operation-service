@@ -33,6 +33,7 @@ public class TransactionDataRepository implements SaveTransactionProvider, FindT
     public Uni<TransactionEntity> processing(final String transaction) {
         return TransactionData.find("transaction", transaction)
                 .firstResult()
+                .invoke(e -> log.info("Transaction found: {}", e))
                 .onItem().ifNull().failWith(new TransactionNotFoundException())
                 .onItem().ifNotNull().transform(v -> (TransactionData) v)
                 .onItem().transform(TransactionDataConverter::toEntity);
