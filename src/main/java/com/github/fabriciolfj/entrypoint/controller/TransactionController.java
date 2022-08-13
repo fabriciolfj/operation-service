@@ -22,6 +22,16 @@ public class TransactionController {
     private final TransactionUpdateCase transactionUpdateCase;
 
     @POST
+    @Path("/credit")
+    public Uni<Response> createCredit(@Valid final TransactionRequest request) {
+        return transactionCreateCase.execute(TransactionRequestConveter.toEntityCredit(request))
+                .onItem()
+                .ifNull().failWith(new WebApplicationException("Fail save transaction", Response.Status.BAD_REQUEST))
+                .onItem().ifNotNull().transform(c -> Response.accepted().entity(TransactionResponse.builder().transaction(c).build()).build())
+                .onFailure().recoverWithItem(e -> Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build());
+    }
+
+    @POST
     @Path("/debit")
     public Uni<Response> createDebit(@Valid final TransactionRequest request) {
         return transactionCreateCase.execute(TransactionRequestConveter.toEntityDebit(request))

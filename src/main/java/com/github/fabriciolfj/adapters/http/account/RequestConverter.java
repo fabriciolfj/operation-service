@@ -1,15 +1,15 @@
-package com.github.fabriciolfj.adapters.http.debit;
+package com.github.fabriciolfj.adapters.http.account;
 
 import com.github.fabriciolfj.entities.TransactionEntity;
 
-public class DebitRequestConverter {
+public class RequestConverter {
 
-    private DebitRequestConverter() {
+    private RequestConverter() {
 
     }
 
-    public static DebitRequestDTO toDTO(final TransactionEntity transactionEntity) {
-        return DebitRequestDTO.builder()
+    public static RequestDTO toDTO(final TransactionEntity transactionEntity) {
+        return RequestDTO.builder()
                 .codeConta(transactionEntity.account())
                 .transaction(transactionEntity.transaction())
                 .value(transactionEntity.value())

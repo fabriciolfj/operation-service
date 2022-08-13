@@ -1,4 +1,4 @@
-package com.github.fabriciolfj.adapters.http.debit;
+package com.github.fabriciolfj.adapters.http.account;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DebitRequestDTO {
+public class RequestDTO {
 
     @JsonProperty("code_conta")
     private String codeConta;
