@@ -14,5 +14,5 @@ public interface RulesClient {
 
     @GET
     @Path("/{value}")
-    Uni<BigDecimal> findLoan(@PathParam("value") final BigDecimal value);
+    Uni<LoanRequest> findLoan(@PathParam("value") final BigDecimal value);
 }
