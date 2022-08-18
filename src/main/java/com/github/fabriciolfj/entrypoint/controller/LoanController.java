@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.math.BigDecimal;
+import java.time.Duration;
 
 @Path("/api/v1/loan")
 @RequiredArgsConstructor
