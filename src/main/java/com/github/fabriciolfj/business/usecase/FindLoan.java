@@ -26,6 +26,7 @@ public class FindLoan {
                 .invoke(b -> log.info("Value processing loan {}", b))
                 .onItem()
                 .transformToUni(b -> provider.process(b.value()))
+                .onItem().ifNull().failWith(new LoanException())
                 .onItem()
                 .transformToUni(c -> createCase.execute(
                         new TransactionEntity(UUID.randomUUID().toString(), entity.account(), entity.customer(), c, TypeTransaction.CREDIT)));

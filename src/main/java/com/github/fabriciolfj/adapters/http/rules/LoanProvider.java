@@ -27,7 +27,8 @@ public class LoanProvider implements FindLoanProvider {
                             var loanValue = c.getValue();
                             log.info("Value loan: {}", loanValue);
                             return loanCache.setValue(value, loanValue);
-                        }));
+                        }))
+                .onFailure().recoverWithUni(Uni.createFrom().nullItem());
     }
 
 }
